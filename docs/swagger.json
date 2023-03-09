@@ -1,0 +1,193 @@
+{
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "This is the API for the address parser service",
+        "title": "Address Parser API",
+        "contact": {
+            "name": "Giorgos Komninos",
+            "url": "http://blog.gkomninos.com"
+        },
+        "version": "1.0.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/parse": {
+            "post": {
+                "description": "Parses an address into its components",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "AddressParser"
+                ],
+                "summary": "Parse an address into its components",
+                "parameters": [
+                    {
+                        "description": "AddressParserInput",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/addressparser.AddressParserInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/addressparser.Address"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/web.ErrResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/web.ErrResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/web.ErrResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "addressparser.Address": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "description": "for category queries like \"restaurants\", etc.",
+                    "type": "string"
+                },
+                "city": {
+                    "description": "any human settlement including cities, towns, villages, hamlets, localities, etc.",
+                    "type": "string"
+                },
+                "city_district": {
+                    "description": "these are usually boroughs or districts within a city that serve some official purpose e.g. \"Brooklyn\" or \"Hackney\" or \"Bratislava IV\"",
+                    "type": "string"
+                },
+                "country": {
+                    "description": "sovereign nations and their dependent territories, anything with an ISO-3166 code.",
+                    "type": "string"
+                },
+                "country_region": {
+                    "description": "informal subdivision of a country without any political status",
+                    "type": "string"
+                },
+                "entrance": {
+                    "description": "numbered/lettered entrance",
+                    "type": "string"
+                },
+                "house": {
+                    "description": "venue name e.g. \"Brooklyn Academy of Music\", and building names e.g. \"Empire State Building\"",
+                    "type": "string"
+                },
+                "house_number": {
+                    "description": "usually refers to the external (street-facing) building number. In some countries this may be a compount, hyphenated number which also includes an apartment number, or a block number (a la Japan), but libpostal will just call it the house_number for simplicity.",
+                    "type": "string"
+                },
+                "island": {
+                    "description": "named islands e.g. \"Maui\"",
+                    "type": "string"
+                },
+                "level": {
+                    "description": "expressions indicating a floor number e.g. \"3rd Floor\", \"Ground Floor\", etc.",
+                    "type": "string"
+                },
+                "near": {
+                    "description": "phrases like \"in\", \"near\", etc. used after a category phrase to help with parsing queries like \"restaurants in Brooklyn\"",
+                    "type": "string"
+                },
+                "po_box": {
+                    "description": "post office box: typically found in non-physical (mail-only) addresses",
+                    "type": "string"
+                },
+                "postcode": {
+                    "description": "postal codes used for mail sorting",
+                    "type": "string"
+                },
+                "road": {
+                    "description": "street name(s)",
+                    "type": "string"
+                },
+                "staircase": {
+                    "description": "numbered/lettered staircase",
+                    "type": "string"
+                },
+                "state": {
+                    "description": "a first-level administrative division. Scotland, Northern Ireland, Wales, and England in the UK are mapped to \"state\" as well (convention used in OSM, GeoPlanet, etc.)",
+                    "type": "string"
+                },
+                "state_district": {
+                    "description": "usually a second-level administrative division or county.",
+                    "type": "string"
+                },
+                "suburb": {
+                    "description": "usually an unofficial neighborhood name like \"Harlem\", \"South Bronx\", or \"Crown Heights\"",
+                    "type": "string"
+                },
+                "unit": {
+                    "description": "an apartment, unit, office, lot, or other secondary unit designator",
+                    "type": "string"
+                },
+                "world_region": {
+                    "description": "currently only used for appending “West Indies” after the country name, a pattern frequently used in the English-speaking Caribbean e.g. “Jamaica, West Indies”",
+                    "type": "string"
+                }
+            }
+        },
+        "addressparser.AddressParserInput": {
+            "type": "object",
+            "required": [
+                "address"
+            ],
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "language": {
+                    "type": "string"
+                },
+                "title_case": {
+                    "description": "if true then the responses will be title Cased. Default behavior of libpostal is not to do that.",
+                    "type": "boolean"
+                }
+            }
+        },
+        "web.ErrResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

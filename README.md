@@ -1,5 +1,4 @@
 # Address Parser Go REST
-[![GoDoc](https://godoc.org/github.com/gosom/address-parser-go-rest?status.svg)](https://godoc.org/github.com/gosom/address-parser-go-rest)
 ![build](https://github.com/gosom/address-parser-go-rest/actions/workflows/build.yml/badge.svg)
 [![Go Report Card](https://goreportcard.com/badge/github.com/gosom/address-parser-go-rest)](https://goreportcard.com/report/github.com/gosom/address-parser-go-rest)
 

@@ -46,7 +46,7 @@ func (o *AddressParserHandler) RegisterRouters(r web.Router) {
 func (o *AddressParserHandler) Parse(w http.ResponseWriter, r *http.Request) {
 	var payload addressparser.AddressParserInput
 	if err := web.DecodeBody(r, &payload, true); err != nil {
-		web.JSONError(w, r, fmt.Errorf("%w %s", lib.ErrBadRequest))
+		web.JSONError(w, r, fmt.Errorf("%w %s", lib.ErrBadRequest, err))
 		return
 	}
 	result, err := o.parser.Parse(payload)

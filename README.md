@@ -1,4 +1,8 @@
 # Address Parser Go REST
+[![GoDoc](https://godoc.org/github.com/gosom/address-parser-go-rest?status.svg)](https://godoc.org/github.com/gosom/address-parser-go-rest)
+![build](https://github.com/gosom/address-parser-go-rest/actions/workflows/build.yml/badge.svg)
+[![Go Report Card](https://goreportcard.com/badge/github.com/gosom/address-parser-go-rest)](https://goreportcard.com/report/github.com/gosom/address-parser-go-rest)
+
 
 Address Parser Go REST is a REST API that provides address parsing functionality using the libpostal library. 
 The purpose of this API is to allow users to easily parse addresses into their individual components 

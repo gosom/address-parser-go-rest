@@ -9,7 +9,7 @@ without the need for the libpostal library to be included as a dependency in the
 ## Quickstart
 
 ```
-docker run -p 8080 gosom/address-parser-go-rest:v1.0.0
+docker run -p 8080:8080 gosom/address-parser-go-rest:v1.0.1
 ```
 
 This will take some time to load

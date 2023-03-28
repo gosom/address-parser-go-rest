@@ -1,6 +1,8 @@
 package libpostal
 
 import (
+	"strings"
+
 	"github.com/gosom/kit/logging"
 	postal "github.com/openvenues/gopostal/parser"
 	"golang.org/x/text/cases"
@@ -30,6 +32,7 @@ func (o *libPostalParser) Parse(input addressparser.AddressParserInput) (address
 			tag = r
 		}
 	}
+	houseNumberFound := false
 	for i := range components {
 		if input.TitleCase {
 			components[i].Value = cases.Title(tag, cases.NoLower).String(components[i].Value)
@@ -42,7 +45,10 @@ func (o *libPostalParser) Parse(input addressparser.AddressParserInput) (address
 		case "near":
 			address.Near = components[i].Value
 		case "house_number":
-			address.HouseNumber = components[i].Value
+			if !houseNumberFound {
+				address.HouseNumber = components[i].Value
+				houseNumberFound = true
+			}
 		case "road":
 			address.Road = components[i].Value
 		case "unit":
@@ -79,6 +85,7 @@ func (o *libPostalParser) Parse(input addressparser.AddressParserInput) (address
 			o.log.Warn("Unknown component", "component", components[i].Label)
 		}
 	}
+	address.HouseNumber = strings.TrimSpace(address.HouseNumber)
 	return address, nil
 }
 

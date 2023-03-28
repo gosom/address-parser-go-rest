@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"embed"
+	"fmt"
 	"os"
 
 	"github.com/gosom/kit/logging"
@@ -69,6 +70,7 @@ func run(ctx context.Context) error {
 		Host:   addr,
 		Router: router,
 	}
+	log.Info(fmt.Sprintf("Starting server at %s", addr))
 	webSvc := web.NewHttpServer(webCfg)
 
 	return webSvc.ListenAndServe(ctx)

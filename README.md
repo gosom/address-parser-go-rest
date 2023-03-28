@@ -12,6 +12,8 @@ without the need for the libpostal library to be included as a dependency in the
 docker run -p 8080 gosom/address-parser-go-rest:v1.0.0
 ```
 
+This will take some time to load
+
 then try a sample request
 
 ```

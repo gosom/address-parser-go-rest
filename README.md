@@ -30,14 +30,7 @@ curl -X 'POST' \
 Response:
 
 ```
-curl -X 'POST' \
-  'http://localhost:8080/parse' \
-  -H 'accept: application/json' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "address": "48 Leicester Square, London WC2H 7LU, United Kingdom",
-   "title_case": true
-}'
+{"house_number":"48","road":"Leicester Square","postcode":"Wc2h 7Lu","city":"London","country":"United Kingdom"}
 ```
 
 [swagger documentation](http://localhost:8080/docs/)

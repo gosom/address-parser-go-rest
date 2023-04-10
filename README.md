@@ -33,7 +33,9 @@ Response:
 {"house_number":"48","road":"Leicester Square","postcode":"Wc2h 7Lu","city":"London","country":"United Kingdom"}
 ```
 
-[swagger documentation](http://localhost:8080/docs/)
+Open [swagger documentation] (http://localhost:8080/docs/)
+
+See another example [in this blog post](https://blog.gkomninos.com/introducing-address-parser-go-rest-a-simple-solution-for-address-parsing)
 
 
 ## Run without docker

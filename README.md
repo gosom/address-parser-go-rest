@@ -9,7 +9,7 @@ without the need for the libpostal library to be included as a dependency in the
 ## Quickstart
 
 ```
-docker run -p 8080:8080 gosom/address-parser-go-rest:v1.0.1
+docker run -p 8080:8080 gosom/address-parser-go-rest
 ```
 
 This will take some time to load
@@ -30,7 +30,35 @@ curl -X 'POST' \
 Response:
 
 ```
-{"house_number":"48","road":"Leicester Square","postcode":"Wc2h 7Lu","city":"London","country":"United Kingdom"}
+{
+  "house_number": "48",
+  "road": "Leicester Square",
+  "postcode": "Wc2h 7Lu",
+  "city": "London",
+  "country": "United Kingdom",
+  "components": [
+    {
+      "label": "house_number",
+      "value": "48"
+    },
+    {
+      "label": "road",
+      "value": "Leicester Square"
+    },
+    {
+      "label": "city",
+      "value": "London"
+    },
+    {
+      "label": "postcode",
+      "value": "Wc2h 7Lu"
+    },
+    {
+      "label": "country",
+      "value": "United Kingdom"
+    }
+  ]
+}
 ```
 
 [swagger documentation](http://localhost:8080/docs/)

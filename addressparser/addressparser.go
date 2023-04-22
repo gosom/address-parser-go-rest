@@ -46,6 +46,16 @@ type Address struct {
 	Country string `json:"country,omitempty"`
 	// currently only used for appending “West Indies” after the country name, a pattern frequently used in the English-speaking Caribbean e.g. “Jamaica, West Indies”
 	WorldRegion string `json:"world_region,omitempty"`
+	// Components is the raw response from libpostal
+	Components []AddressComponent `json:"components"`
+}
+
+// AddressComponent is a struct for an address component
+type AddressComponent struct {
+	// Label is the label of the component as defined by libpostal
+	Label string `json:"label"`
+	// Value is the value of the component as defined by libpostal
+	Value string `json:"value"`
 }
 
 // AddressParserInput is a struct for the input to the address parser

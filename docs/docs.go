@@ -94,6 +94,13 @@ const docTemplate = `{
                     "description": "these are usually boroughs or districts within a city that serve some official purpose e.g. \"Brooklyn\" or \"Hackney\" or \"Bratislava IV\"",
                     "type": "string"
                 },
+                "components": {
+                    "description": "Components is the raw response from libpostal",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/addressparser.AddressComponent"
+                    }
+                },
                 "country": {
                     "description": "sovereign nations and their dependent territories, anything with an ISO-3166 code.",
                     "type": "string"
@@ -164,6 +171,19 @@ const docTemplate = `{
                 }
             }
         },
+        "addressparser.AddressComponent": {
+            "type": "object",
+            "properties": {
+                "label": {
+                    "description": "Label is the label of the component as defined by libpostal",
+                    "type": "string"
+                },
+                "value": {
+                    "description": "Value is the value of the component as defined by libpostal",
+                    "type": "string"
+                }
+            }
+        },
         "addressparser.AddressParserInput": {
             "type": "object",
             "required": [
@@ -171,12 +191,15 @@ const docTemplate = `{
             ],
             "properties": {
                 "address": {
+                    "description": "the address to parse",
                     "type": "string"
                 },
                 "country": {
+                    "description": "the country of the address. Leave empty if you don't know",
                     "type": "string"
                 },
                 "language": {
+                    "description": "the language of the address. Leave empty if you don't know",
                     "type": "string"
                 },
                 "title_case": {

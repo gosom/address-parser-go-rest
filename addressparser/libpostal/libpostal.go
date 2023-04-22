@@ -84,6 +84,12 @@ func (o *libPostalParser) Parse(input addressparser.AddressParserInput) (address
 		default:
 			o.log.Warn("Unknown component", "component", components[i].Label)
 		}
+
+		component := addressparser.AddressComponent{
+			Label: components[i].Label,
+			Value: components[i].Value,
+		}
+		address.Components = append(address.Components, component)
 	}
 	address.HouseNumber = strings.TrimSpace(address.HouseNumber)
 	return address, nil

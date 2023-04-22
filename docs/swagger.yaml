@@ -15,6 +15,11 @@ definitions:
         description: these are usually boroughs or districts within a city that serve
           some official purpose e.g. "Brooklyn" or "Hackney" or "Bratislava IV"
         type: string
+      components:
+        description: Components is the raw response from libpostal
+        items:
+          $ref: '#/definitions/addressparser.AddressComponent'
+        type: array
       country:
         description: sovereign nations and their dependent territories, anything with
           an ISO-3166 code.
@@ -80,13 +85,25 @@ definitions:
           West Indies”
         type: string
     type: object
+  addressparser.AddressComponent:
+    properties:
+      label:
+        description: Label is the label of the component as defined by libpostal
+        type: string
+      value:
+        description: Value is the value of the component as defined by libpostal
+        type: string
+    type: object
   addressparser.AddressParserInput:
     properties:
       address:
+        description: the address to parse
         type: string
       country:
+        description: the country of the address. Leave empty if you don't know
         type: string
       language:
+        description: the language of the address. Leave empty if you don't know
         type: string
       title_case:
         description: if true then the responses will be title Cased. Default behavior
